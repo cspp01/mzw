@@ -2,14 +2,28 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="keywords" content="html,css"/>
-    <meta name="decoration" content="vue单页面应用"/>
-    <meta name="viewport" content="width=device-width,initial-scale=1"/>
-    <title>home</title>
-    <link href="//at.alicdn.com/t/font_ywz22n7qh7uy2e29.css" rel="stylesheet">
+    <title>Title</title>
 </head>
 <body>
-<div id="app"></div>
+<div id="div">123</div>
 </body>
-<script src="./build/index.js"></script>
+<script>
+    window.onload = function() {
+        var d = document.getElementById( 'div' );
+        d.onclick = function() {
+            if( window.XMLHttpRequest ){
+                var xttp = new XMLHttpRequest();
+            } else {
+                xttp = new ActiveObject( 'Mirsoft XMLHTTP' );
+            }
+            xttp.open( 'GET', './a.json' );
+            xttp.send();
+            xttp.onreadystatechange = function() {
+                if( xttp.readyState === 4 && xttp.status === 200 ) {
+                    d.innerHTML = xttp.responseText;
+                }
+            }
+        }
+    }
+</script>
 </html>
